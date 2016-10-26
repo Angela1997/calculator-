@@ -1,3 +1,5 @@
+var previousOperation = null;
+
 /**
  * Created by Home on 21.10.2016.
  */
@@ -5,37 +7,40 @@ function inputNumber(number) {
     var outputText = document.getElementById("input-area").value;
     document.getElementById("input-area").value = outputText + number;
 }
-function inputSymbol(symbol) {
-    var outputText = document.getElementById("input-area").value;
-    document.getElementById("input-area").value = outputText + symbol;
-}
-function equality() {
+
+function inputSymbol(currentOperation) {
     var outputText = document.getElementById("input-area").value;
     var splitNumbers;
     var result;
-    for (var i = 0; i < outputText.length; i++) {
-        switch (outputText[i]) {
+    if (previousOperation) {
+        splitNumbers = outputText.split(currentOperation);
+        var firstValue = parseFloat(splitNumbers[0]);
+        var secondValue = parseFloat(splitNumbers[1]);
+
+        switch (currentOperation) {
             case'+':
-                splitNumbers = document.getElementById("input-area").value.split("+");
-                result = parseFloat(splitNumbers[0]) + parseFloat(splitNumbers[1]);
+                result = firstValue + secondValue;
                 break;
             case'-':
-                splitNumbers = document.getElementById("input-area").value.split("-");
-                result = parseFloat(splitNumbers[0]) - parseFloat(splitNumbers[1]);
+                result = firstValue - secondValue;
                 break;
             case'*':
-                splitNumbers = document.getElementById("input-area").value.split("*");
-                result = parseFloat(splitNumbers[0]) * parseFloat(splitNumbers[1]);
+                result = firstValue * secondValue;
                 break;
             case'/':
-                splitNumbers = document.getElementById("input-area").value.split("/");
-                if (parseFloat(splitNumbers[1]) == 0) {
+                if (secondValue == 0) {
                     result = "Error";
                 }
                 else
-                    result = parseFloat(splitNumbers[0]) / parseFloat(splitNumbers[1]);
+                    result = firstValue / secondValue;
                 break;
         }
     }
     document.getElementById("input-area").value = result;
+
+    if (!previousOperation || previousOperation != '=') {
+        previousOperation = currentOperation;
+    } else {
+        previousOperation = null;
+    }
 }
