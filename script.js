@@ -2,6 +2,8 @@
  * Created by Home on 21.10.2016.
  */
 var operation;
+var count = 0;
+var secondOperation;
 function inputNumber(number) {
   var outputText = document.getElementById("input-area").value;
   document.getElementById("input-area").value = outputText + number;
@@ -31,10 +33,24 @@ function inputSymbol(symbol) {
           result = firstValue / secondValue;
         break;
     }
+    if (count == 1){
     document.getElementById("input-area").value = result;
+      count = 0;
+    }
+    else {
+      document.getElementById("input-area").value = result + secondOperation;
+      count = 1;
+    }
   }
   else {
-    operation = symbol;
-    document.getElementById("input-area").value = outputText + symbol;
+    count = count + 1;
+    if (count == 1) {
+      operation = symbol;
+      document.getElementById("input-area").value = outputText + symbol;
+    }
+    else if (count == 2) {
+      secondOperation = symbol;
+      inputSymbol('=');
+    }
   }
 }
