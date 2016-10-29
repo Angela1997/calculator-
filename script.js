@@ -17,47 +17,69 @@ function inputSymbol(symbol) {
   var result;
   if (outputText != 'Error') {
     if (symbol == '=') {
-      var splitNumbers = outputText.split(operation);
-      var firstValue = parseFloat(splitNumbers[0]);
-      var secondValue = parseFloat(splitNumbers[1]);
-      switch (operation) {
-        case '+':
-          result = firstValue + secondValue;
-          break;
-        case'-':
-          result = firstValue - secondValue;
-          break;
-        case '*':
-          result = firstValue * secondValue;
-          break;
-        case '/':
-          if (secondValue == 0) {
-            result = "Error";
-          }
-          else
-            result = firstValue / secondValue;
-          break;
-      }
-      if (count == 1) {
-        document.getElementById("input-area").value = result;
-        count = 0;
-      }
-      else {
-        document.getElementById("input-area").value = result + secondOperation;
-        operation = secondOperation;
-        count = 1;
+      if (count != 0) {
+        var splitNumbers = outputText.split(operation);
+        var firstValue = parseFloat(splitNumbers[0]);
+        var secondValue = parseFloat(splitNumbers[1]);
+        switch (operation) {
+          case '+':
+            result = firstValue + secondValue;
+            break;
+          case'-':
+            result = firstValue - secondValue;
+            break;
+          case '*':
+            result = firstValue * secondValue;
+            break;
+          case '/':
+            if (secondValue == 0) {
+              result = "Error";
+            }
+            else
+              result = firstValue / secondValue;
+            break;
+        }
+        if (count == 1) {
+          document.getElementById("input-area").value = result;
+          count = 0;
+        }
+        else {
+          document.getElementById("input-area").value = result + secondOperation;
+          operation = secondOperation;
+          count = 1;
+        }
       }
     }
     else {
-      count = count + 1;
-      if (count == 1) {
-        operation = symbol;
-        document.getElementById("input-area").value = outputText + symbol;
+      if (outputText != '') {
+        count = count + 1;
+        if (count == 1) {
+          operation = symbol;
+          document.getElementById("input-area").value = outputText + symbol;
+        }
+        else if (count == 2) {
+          if (outputText [outputText.length - 1] == operation) {
+            operation = symbol;
+            document.getElementById("input-area").value = outputText.substring(0, outputText.length - 1) + symbol;
+            count = count - 1;
+          }
+          else {
+            secondOperation = symbol;
+            inputSymbol('=');
+          }
+        }
       }
-      else if (count == 2) {
-        secondOperation = symbol;
-        inputSymbol('=');
-      }
+    }
+  }
+}
+function outputDelete(deleteSymbol) {
+  var outputText = document.getElementById("input-area").value;
+  if (deleteSymbol == 'CE') {
+    document.getElementById("input-area").value = '';
+  }
+  else if (deleteSymbol == 'C') {
+    if (outputText != 'Error') {
+      document.getElementById("input-area").value = outputText.substring(0, outputText.length - 1);
     }
   }
 }

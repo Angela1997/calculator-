@@ -13,7 +13,13 @@
       <input type="text" id="input-area"/>
     </div>
     <div class="box3">
-      <table class="table1">
+      <table class="textDeleteTable">
+        <tr>
+          <td class='delete' onclick="outputDelete ('CE')"><b>CE</b></td>
+          <td class='delete' onclick="outputDelete('C')"><b>C</b></td>
+        </tr>
+      </table>
+      <table class="buttonTable">
         <tr>
           <td onclick="inputNumber(7)"><b>7</b></td>
           <td onclick="inputNumber(8)"><b>8</b></td>
@@ -33,7 +39,7 @@
           <td onclick="inputSymbol('-')"><b>-</b></td>
         </tr>
         <tr>
-          <td id="a2" onclick="inputNumber(0)"><b>0</b></td>
+          <td id="zeroButton" onclick="inputNumber(0)"><b>0</b></td>
           <td onclick="inputSymbol('=')"><b>=</b></td>
           <td onclick="inputSymbol('+')"><b>+</b></td>
         </tr>

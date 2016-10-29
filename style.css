@@ -41,6 +41,20 @@
   background-color: #dee6f2;
 }
 
+.textDeleteTable {
+  border-collapse: separate;
+  border-spacing: 10px 10px;
+  margin-left: 122px;
+  text-align: center;
+  font-size: 15px;
+  font-family: Verdana, Geneva, sans-serif;
+}
+
+.delete {
+  height: 25px;
+  padding-top: 6px;
+}
+
 td {
   border: 1px solid grey;
   display: table-cell;
@@ -49,28 +63,27 @@ td {
   width: 45px;
   height: 38px;
   padding-top: 10px;
-
 }
 
 td:hover {
   background-color: #b9ccea;
   box-shadow: 3px 3px 2px 2px #c6c9ce;
   cursor: pointer;
-
 }
 
 tr {
   display: flex;
 }
 
-.table1 {
+.buttonTable {
   border-collapse: separate;
   border-spacing: 10px 30px;
   margin-left: 10px;
+  margin-top: -30px;
   text-align: center;
   font-size: 30px;
 }
 
-#a2 {
+#zeroButton {
   width: 102px;
 }
