@@ -50,6 +50,13 @@
   font-family: Verdana, Geneva, sans-serif;
 }
 
+#backsymbol
+{
+  height: 25px;
+  font-size: 30px;
+  padding-top: 2px;
+}
+
 .delete {
   height: 25px;
   padding-top: 6px;
